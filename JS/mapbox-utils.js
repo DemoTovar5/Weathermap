@@ -9,3 +9,14 @@ var map = new mapboxgl.Map({
     zoom: 12
 });
 
+
+map.addControl(
+    new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    })
+);
+
+map.addControl(new mapboxgl.NavigationControl());
+
+
