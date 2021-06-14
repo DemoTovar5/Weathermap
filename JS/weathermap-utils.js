@@ -10,13 +10,28 @@ function getForecast(coordinates) {
             units: 'imperial',
         },
         success: function(data){
-            // console.log(data);
+            console.log(data);
             buildDOMObjects(filterWeather(data), filterLocation(data));
         }
     });
 }
 
+// on the document load, this function brings up the info of our current location.
+$(document).ready(function (event) {
+    $.ajax({
+        url: "http://api.openweathermap.org/data/2.5/forecast",
+        data: {
+            APPID:OPEN_WEATHERMAP_TOKEN,
+            q: "San Antonio, USA",
+            units:"imperial",
+        },
+        success: function(data) {
+            buildDOMObjects(filterWeather(data), filterLocation(data));
+        }
+    });
+});
 
+// Need to make a for loop to get every 8th object from the array.
 function filterWeather(data){
     let array = [];
 
@@ -28,7 +43,7 @@ function filterWeather(data){
     return array
 }
 
-
+// getting the city information
 function filterLocation(data){
     return data.city;
 

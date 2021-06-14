@@ -12,7 +12,7 @@ let geocoder = setGeocoder();
 addGeocodertoMap(geocoder);
 mapEvent();
 
-// creates the geocoder
+// creates the searchbox for the map
 function setGeocoder() {
         return new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
@@ -29,6 +29,7 @@ function addGeocodertoMap(geocoder){
         // console.log(event);
         // console.log(event.result.geometry.coordinates);
 
+        // sets the marker to the lat/lng of the location
         setMarker(event.result.geometry.coordinates);
         marker.setPopup(displayPopUp(event.result.place_name));
 
@@ -48,6 +49,7 @@ function setMarker(point){
     }
 }
 
+// creates our click event and sets the marker to lng lat.
 function mapEvent(){
 
     map.on('click', function (event) {
